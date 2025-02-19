@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+		<title>学天市場</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/reset.css" />
+		
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/style.css" />
+	</head>
+
+	<body >
+		<div class="container">
+		<header class="row">
+			<h1 class="col-3"><a th:href="@{/snack/list}">学天市場</a></h1>
+			<form method="post" th:action="@{/snack/search} " class="col-3"th:object="${form}">
+				<input type="search" placeholder="キーワードを入力" th:field="*{snackname}">
+				<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			
+			</form>
+			<ul class="col-6">
+				
+				<li><a th:if="${#authentication != null and #authentication.principal == 'anonymousUser'}" th:href="@{/user/login}">ログイン</a></li>
+				<li><a th:if="${#authentication != null and #authentication.principal != 'anonymousUser'}" th:href="@{/user/info}">ユーザー情報</a></li>
+
+				<li><a th:href="@{/buy/favorite}">お気に入り</a></li>
+				<li><a th:href="@{/buy/buy_history}">購入履歴</a></li>
+				<li><a th:href="@{/buy/bag}">買い物かご</a></li>
+				<li><a th:href="@{/buy/history}">閲覧履歴</a></li>
+			</ul>
+			
+		</header>
+		<section id="buy_finish">
+			<div class="inner text-center">
+				<h2>注文完了</h2>
+				<div class="text col-8 offset-2">
+					<p>ご注文を受け付けました。</p>
+					<p>学天市場をご利用いただきありがとうございました。</p>
+					<p>ご登録いただいたメールアドレスに注文受付メールを送信しました。</p>
+					<p>今後ともご愛顧を賜りますようよろしくお願い申し上げます。</p>
+					
+				</div>
+				<div class=" btn"><a th:href="@{/snack/list}">ホーム画面に戻る</a></div>
+			</div>
+		</section>
+		</div>
+		<footer>
+			<small>Copyright © 2025 TeamB</small>
+		</footer>
+		<!-- Scripts -->
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/assets/js/jquery.scrolly.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>

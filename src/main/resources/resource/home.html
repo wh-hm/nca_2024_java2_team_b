@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>ホーム</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/noscript.css" />
+</head>
+
+<body class="is-preload">
+
+	<section class="wrapper style1 align-center">
+		<div class="inner">
+			<div class="index align-left">
+				<section>
+					<header>
+						<h1>学天市場</h1>
+					</header>
+
+					<div class="field">
+						<label for="search">検索</label>
+						<input type="text" th:field="*{search}" />
+					</div>
+
+					<div class="content">
+						<ul class="actions">
+							<li><a href="/user/login" class="button large">ログイン</a></li>
+							<li><a href="/user/favorite" class="button large">お気に入り</a></li>
+							<li><a href="/user/history" class="button large">購入履歴</a></li>
+							<li><a href="/user/cart" class="button large">買い物かご</a></li>
+							<li><a href="/user/view" class="button large">閲覧履歴</a></li>
+						</ul>
+					</div>
+
+					<aside>
+						<h2 class="cateory">カテゴリー</h2>
+						<ul class="sub-menu">
+							<li><a href="category_1">スナック</a></li>
+							<li><a href="category_2">グミ</a></li>
+							<li><a href="category_3">チョコ</a></li>							
+							<li><a href="category_4">焼き菓子</a></li>							
+							<li><a href="category_5">乳製品</a></li>							
+							<li><a href="category_6">キャンディー</a></li>							
+							<li><a href="category_7">脱法</a></li>							
+							<li><a href="category_8">知育菓子</a></li>							
+							<li><a href="category_9">フルーツ菓子</a></li>							
+							<li><a href="category_10">ゼリー</a></li>
+						</ul>
+					</aside>
+
+					<div class="column3">
+						<h2>商品覧</h2>
+						<div class="col3">
+							<h3>お菓子の名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+						<div class="sol3">
+							<h3>名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+						<div class="sol3">
+							<h3>名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+					</div>
+
+
+					<div class="column3">
+						<h2>商品覧</h2>
+						<div class="col3">
+							<h3>お菓子の名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+						<div class="sol3">
+							<h3>名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+						<div class="sol3">
+							<h3>名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+					</div>
+
+
+					<div class="column3">
+						<h2>商品覧</h2>
+						<div class="col3">
+							<h3>お菓子の名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+						<div class="sol3">
+							<h3>名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+						<div class="sol3">
+							<h3>名前</h3>
+							<img th:src="">
+							<p>商品のPR</p>
+						</div>
+					</div>
+
+
+				</section>
+			</div>
+		</div>
+	</section>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+		<title>学天市場</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/reset.css" />
+		
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/style.css" />
+	</head>
+
+	<body >
+		<div class="container">
+		<header class="row">
+			<h1 class="col-3"><a th:href="@{/snack/list}">学天市場</a></h1>
+			<form method="post" th:action="@{/snack/search} " class="col-3"th:object="${snackform}">
+				<input type="search" placeholder="キーワードを入力" th:field="*{snackname}">
+				<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			
+			</form>
+			<ul class="col-6">
+				
+				<li><a th:if="${#authentication != null and #authentication.principal == 'anonymousUser'}" th:href="@{/user/login}">ログイン</a></li>
+				<li><a th:if="${#authentication != null and #authentication.principal != 'anonymousUser'}" th:href="@{/user/info}">ユーザー情報</a></li>
+
+				<li><a th:href="@{/buy/favorite}">お気に入り</a></li>
+				<li><a th:href="@{/buy/buy_history}">購入履歴</a></li>
+				<li><a th:href="@{/buy/bag}">買い物かご</a></li>
+				<li><a th:href="@{/buy/history}">閲覧履歴</a></li>
+			</ul>
+			
+		</header>
+		<section id="buy_user_info" >
+			<div class="inner text-leftr">
+			<h2>お客様情報の入力</h2>
+			<form method="post" th:action="@{/buy/pay/{snackid}(snackid=${snackid})}" th:object="${userform}">
+				
+					<div class="row">
+						<label for="name" class="col-3 offset-2">お名前</label>
+						<input type="text" th:field="*{name}"  class="col-5" required/>
+					</div>
+					<div class="row">
+						<label for="kana" class="col-3 offset-2">カナ</label>
+						<input type="text" th:field="*{kana}" class="col-5" required/>
+					</div>
+					
+					
+					<div class="row">
+						<label for="email" class="col-3 offset-2">メールアドレス</label>
+						<div th:text="${userform.email}"  class="col-5"></div>
+					</div>
+					<div class="row text-center">
+						<p class="red offset-5">※メールアドレスはユーザー情報から変更してください</p>
+					</div>
+					<div class="row">
+						<label for="tel" class="col-3 offset-2">電話番号</label>
+						<input type="tel" th:field="*{tel}" class="col-5" required/>
+					</div>
+					
+					<div class="row">
+						<label for="zip" class="col-3 offset-2">郵便番号</label>
+						<input type="text" th:field="*{zip}"class="col-5" required/>
+					</div>
+					
+					<div class="row">
+						<label for="address" class="col-3 offset-2">住所</label>
+						<input type="text" th:field="*{address}" class="col-5" required/>
+					</div>
+					
+				
+				<div class="text-right"><button type="submit" class="red">次へ</button></div>
+			</form>
+			</div>
+		</section>
+		</div>
+		<footer>
+			<small>Copyright © 2025 TeamB</small>
+		</footer>
+		<!-- Scripts -->
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/assets/js/jquery.scrolly.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>

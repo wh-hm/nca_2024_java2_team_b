@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>購入手続き</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/noscript.css" />
+	
+	<!-- JS読み込み-->
+	<script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
+</head>
+
+<body class="is-preload">
+
+	<section class="wrapper style1 align-center">
+		<div class="inner">
+			<header>
+				<h1>学天市場</h1>
+			</header>
+			
+			<h3>送付先の情報を入力してください。</h3>
+			
+			<div class="infomation">
+				<div class="field">
+					<label for="name">お名前（必須）</label>
+					<input type="text" th:field="*{name}" required/> 
+				</div>
+				<div class="field">
+					<label for="kana">フリガナ</label>
+					<input type="text" th:field="*{kana}" />
+				</div>
+				<!--th:fieldが未定義だからそれの原因解明/ 出来ましたーー！-->
+				<div class="field">
+					<label for="zip" style="display: block">郵便番号(必須)</label>
+					<input type="text" name="postal1" size="3">-<input type="text" name="postal2" size="4" onKeyUp="AjaxZip3.zip2addr('postal1','postal2','address','address');" required/>
+				</div>
+				<div class="field">
+					<label for="address">住所(必須)</label>
+					<input type="text" th:field="*{address}" required />
+				</div>
+				<div class="field">
+					<label for="tel">電話番号(必須)</label>
+					<input type="text" th:field="*{tel}" required/>
+				</div>
+			</div>
+
+		</div>
+	</section>
+</body>
+
+</html>

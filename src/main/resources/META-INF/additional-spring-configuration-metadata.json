@@ -1,0 +1,18 @@
+{"properties": [
+  {
+    "name": "base.path.snack",
+    "type": "java.lang.String",
+    "description": "A description for 'base.path.snack'"
+  },
+  {
+    "name": "base.path.user",
+    "type": "java.lang.String",
+    "description": "A description for 'base.path.user'"
+  },
+  {
+    "name": "base.path.buy",
+    "type": "java.lang.String",
+    "description": "A description for 'base.path.buy'"
+  }
+
+]}

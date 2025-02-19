@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>学天市場</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+   
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+
+<body >
+	<div class="container">
+	
+	<header class="row">
+		<h1 class="col-3"><a th:href="@{/snack/list}">学天市場</a></h1>
+		<form method="post" th:action="@{/snack/search} " class="col-3"th:object="${snackForm}">
+			<input type="search" placeholder="キーワードを入力" th:field="*{snackname}">
+			<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+		
+		</form>
+		<ul class="col-6">
+			<li><a th:if="${#authentication != null and #authentication.principal == 'anonymousUser'}" th:href="@{/user/login}">ログイン</a></li>
+			<li><a th:if="${#authentication != null and #authentication.principal != 'anonymousUser'}" th:href="@{/user/info}">ユーザー情報</a></li>
+
+			<li><a th:href="@{/buy/favorite}">お気に入り</a></li>
+			<li><a th:href="@{/buy/buy_history}">購入履歴</a></li>
+			<li><a th:href="@{/buy/bag}">買い物かご</a></li>
+			<li><a th:href="@{/buy/history}">閲覧履歴</a></li>
+		</ul>
+		
+	</header>
+	
+
+	<div class="row">
+		<div class="category col-2 text-center" >
+			<h2>カテゴリー</h2>
+			<ul>
+				<li><a th:href="@{/snack/snack_list/snacks}">スナック菓子</a></li>
+				<li><a th:href="@{/snack/snack_list/gummi}">グミ</a></li>
+				<li><a th:href="@{/snack/snack_list/baked_sweets}">焼き菓子</a></li>
+				<li><a th:href="@{/snack/snack_list/chocolate}">チョコ</a></li>
+				<li><a th:href="@{/snack/snack_list/dairy_products}">乳製品</a></li>
+				<li><a th:href="@{/snack/snack_list/candy}">キャンディー</a></li>
+				<li><a th:href="@{/snack/snack_list/evasion_of_the_law}">脱法</a></li>
+				<li><a th:href="@{/snack/snack_list/educational_sweets}">知育菓子</a></li>
+				<li><a th:href="@{/snack/snack_list/fruit}">フルーツ菓子</a></li>
+				<li><a th:href="@{/snack/snack_list/jelly}">ゼリー</a></li>
+			</ul>
+		</div>
+
+		<section id="favorite" class="col-10 text-center">
+			<div class="inner">
+				
+				<h2>お気に入り</h2>
+				<div class="content">
+					<form method="post" th:action="@{/buy/favorite/delete}" th:object="${form}" id="favoriteForm">
+						
+						
+							
+						<div class="row">
+							<p class="col-12" th:if="${!#lists.isEmpty(snackList)}">20件まで登録できます。20件を超えると古いものから削除されます。</p>
+
+							<div th:if="${#lists.isEmpty(snackList)}" class="text col-12"><p>お気に入りに登録されていません</p></div>
+						    <div th:if="${!#lists.isEmpty(snackList)}" th:each="snack : ${snackList}" class="col-12 col_self_item">
+						        
+								<div class="col_self col-10" >
+										
+									<div class="col-1">
+										<input type="checkbox" th:name="snackid" th:value="${snack.snackid}">
+									</div>
+									<div class="clickable col-11 col_self" th:attr="onclick='window.location=\'/snack/snack_item/' + ${snack.snackid} + '\';'">
+										<figure  class="col-3"><img th:src="@{/assets/image/{picture}(picture=${snack.picture})}" th:alt="${snack.snackname}"></figure>
+										<div class="col-8">
+												
+										  	<table>
+												<tr>
+													<th>商品名</th>
+													<th>値段</th>
+												</tr>
+												<tr>
+													<td th:text="${snack.snackname}"></td>
+													<td th:text="${snack.price} + '円'"></td>
+												</tr>
+												
+											</table>
+											<div class="row sold"><p class="col-8 offset-2 red " th:if="${snack.stock} <= 0" >現在この商品は品切れ中です。</p></div>
+										</div>
+										
+									</div>
+									
+								</div>
+								
+								<div class="col-2 red">
+									<a th:href="@{/buy/{snackid}(snackid=${snack.snackid})}"  th:if="${snack.stock} > 0">購入する</a>
+									<span th:if="${snack.stock} <= 0" >購入できません</span>
+								</div>			
+									
+								
+								
+								
+						</div>
+							</div>
+							<button type="submit" th:if="${!#lists.isEmpty(snackList)}">選択したアイテムを削除</button>
+						
+					</form>
+					
+				</div>
+					
+			</div>
+		</section>
+	</div>
+	</div>
+	<footer>
+		<small>Copyright © 2025 TeamB</small>
+	</footer>
+
+
+	
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+	
+	<script>
+	   
+		
+		document.getElementById('favoriteForm').addEventListener('submit', function(event) {
+		    // チェックボックスが選択されているかどうかを確認
+		    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+		    
+		    // もし何も選択されていなければ、送信を防ぐ
+		    if (checkboxes.length === 0) {
+		        let msg = document.getElementById('er_msg');
+		        msg.textContent = '少なくとも1つのアイテムを選択してください。';
+		        
+		        event.preventDefault();  // フォームの送信をキャンセル
+		    }
+		});
+
+	</script>
+
+</body>
+
+</html>

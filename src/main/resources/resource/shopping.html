@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>買い物かご</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/noscript.css" />
+</head>
+
+<body class="is-preload">
+
+	<section class="wrapper style1 align-center">
+		<div class="inner">
+			<div class="index align-left">
+				<section>
+					<header>
+						<h1>学天市場</h1>
+					</header>
+
+					<div class="field">
+						<label for="search">検索</label>
+						<input type="text" th:field="*{search}" />
+					</div>
+
+					<div class="content">
+						<ul class="actions">
+							<li><a href="/user/login" class="button large">ログイン</a></li>
+							<li><a href="/user/favorite" class="button large">お気に入り</a></li>
+							<li><a href="/user/history" class="button large">購入履歴</a></li>
+							<li><a href="/user/cart" class="button large">買い物かご</a></li>
+							<li><a href="/user/view" class="button large">閲覧履歴</a></li>
+						</ul>
+					</div>
+
+					<h3>以下の商品が入っています。</h3>
+					<div class="shop">
+						<img th:src="">
+						<div class="items">
+							商品名:<input type="text" th:field="*{snackname}">
+							値段:<input type="text" th:field="*{price}">
+							お届け日:<input type="text" th:field="*{delivery}">
+						</div>
+					</div>
+					<div class="buy">
+						<ul>
+							<li><a href="/user/buy">購入手続き</a></li>
+						</ul>
+						<!--合計金額の表示　間違っている可能性有なので、後で見直してね-->
+						合計金額:<input type="number" th:value="${snack.price}">
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</section>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+</body>

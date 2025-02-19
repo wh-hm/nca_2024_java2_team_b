@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>NCA JAVA2</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/noscript.css}" />
+</head>
+
+<body class="is-preload">
+
+	<section class="wrapper style1 align-center">
+		<div class="inner">
+			<div class="index align-left">
+				<section>
+					<header>
+						<h3>ログイン</h3>
+					</header>
+					<div class="content">
+						<!--<form method="post" action="/user/menu">-->
+						<form method="post" th:action="@{/perform_login}">
+							<div class="fields">
+								<div class="field half">
+									
+									<label for="username">Email</label>
+									
+									<input type="email" name="username" id="username" value="ncr2319wh0016@edu.nca.ac.jp"/>
+								</div>
+								<div class="field half">
+									<label for="password">パスワード</label>
+									<input type="password" name="password" id="password" value="kdkod9j4" />
+								</div>
+							</div>
+							<div><a th:href="@{/user/login/add}">新規登録</a></div>
+							<div><a th:href="@{/user/login/nologin}">ログインせずに使用する</a></div>
+							<ul class="actions">
+								<li><input type="submit" name="submit" id="submit" value="ログイン" /></li>
+							</ul>
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<!-- エラーメッセージ -->
+							<div th:if="${param.error}">
+								<p style="color: red;">ユーザー名またはパスワードが無効です。</p>
+							</div>
+							<!-- ログアウトメッセージ -->
+							<div th:if="${param.logout}">
+								<p style="color: green;">正常にログアウトしました</p>
+							</div>
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+	</section>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+</body>
+
+</html>

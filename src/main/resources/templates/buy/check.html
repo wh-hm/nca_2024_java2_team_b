@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+		<title>学天市場</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/assets/css/reset.css" />
+		
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/style.css" />
+	</head>
+
+	<body >
+		<div class="container">
+		<header class="row">
+			<h1 class="col-3"><a th:href="@{/snack/list}">学天市場</a></h1>
+			<form method="post" th:action="@{/snack/search} " class="col-3"th:object="${form}">
+				<input type="search" placeholder="キーワードを入力" th:field="*{snackname}">
+				<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			
+			</form>
+			<ul class="col-6">
+				
+				<li><a th:if="${#authentication != null and #authentication.principal == 'anonymousUser'}" th:href="@{/user/login}">ログイン</a></li>
+				<li><a th:if="${#authentication != null and #authentication.principal != 'anonymousUser'}" th:href="@{/user/info}">ユーザー情報</a></li>
+
+				<li><a th:href="@{/buy/favorite}">お気に入り</a></li>
+				<li><a th:href="@{/buy/buy_history}">購入履歴</a></li>
+				<li><a th:href="@{/buy/bag}">買い物かご</a></li>
+				<li><a th:href="@{/buy/history}">閲覧履歴</a></li>
+			</ul>
+			
+		</header>
+
+		<div class="row">
+			<div class="category col-2 text-center" >
+				<h2>カテゴリー</h2>
+				<ul>
+					<li><a th:href="@{/snack/snack_list/snacks}">スナック菓子</a></li>
+					<li><a th:href="@{/snack/snack_list/gummi}">グミ</a></li>
+					<li><a th:href="@{/snack/snack_list/baked_sweets}">焼き菓子</a></li>
+					<li><a th:href="@{/snack/snack_list/chocolate}">チョコ</a></li>
+					<li><a th:href="@{/snack/snack_list/dairy_products}">乳製品</a></li>
+					<li><a th:href="@{/snack/snack_list/candy}">キャンディー</a></li>
+					<li><a th:href="@{/snack/snack_list/evasion_of_the_law}">脱法</a></li>
+					<li><a th:href="@{/snack/snack_list/educational_sweets}">知育菓子</a></li>
+					<li><a th:href="@{/snack/snack_list/fruit}">フルーツ菓子</a></li>
+					<li><a th:href="@{/snack/snack_list/jelly}">ゼリー</a></li>
+				</ul>
+			</div>
+			<section id="check" class="col-10 text-center">
+				<div class="inner">
+					
+					<h2>ご注文内容の確認</h2>
+					<div th:object="${userform}" class="col-12">
+						
+						<h3>お客様情報</h3>
+						<div class="col_deco_border text-left">
+							<div class="row">
+								<p class="offset-2 col-2">お名前</p>
+								<p th:text="${userform.name}" class="offset-1 col-7"></p>
+							</div>
+							<div class="row">
+								<p class="offset-2 col-2">フリガナ</p>
+								<p th:text="${userform.kana}" class="offset-1 col-7"></p>
+							</div>
+							<div class="row">
+								<p class="offset-2 col-2">電話番号</p>
+								<p th:text="${userform.tel}" class="offset-1 col-7"></p>
+							</div>
+							<div class="row">
+								<p class="offset-2 col-2">郵便番号</p>
+								<p th:text="${userform.zip}" class="offset-1 col-7"></p>
+							</div>
+							<div class="row">
+								<p class="offset-2 col-2">住所</p>
+								<p th:text="${userform.address}" class="offset-1 col-7"></p>
+							</div>
+						</div>
+					
+					</div>
+					
+						
+					<div class="col-12">
+					<h3>商品情報</h3>
+					<div th:each="snack : ${snackList}" >
+											
+								
+						
+							
+						<div class="col_self">
+									
+							<figure class="col-3"><img th:src="@{/assets/image/{picture}(picture=${snack.picture})}" th:alt="${snack.snackname}"></figure>
+							<div class="col-8">	
+								<div class="row">
+									<p class="offset-1 col-3">商品名</p>
+									<p th:text="${snack.snackname}" class="col-8"></p>
+								</div>
+								<div class="row">
+									<p class="offset-1 col-3">値段</p>
+									<p th:text="${snack.price} + '円'" class="col-8"></p>
+								</div>
+								
+									
+							</div>
+						</div>
+					</div>
+					</div>
+							<p class="text">この内容でよろしければ「注文する」ボタンを押してください。</p>
+							<div class="text-center "><a th:href="@{/buy/buy_msg/{snackid}(snackid=${snackid})}">注文する</a></div>
+							
+							</div>
+							
+						
+													
+						
+						
+			</section>
+		</div>
+		</div>
+		<footer>
+			<small>Copyright © 2025 TeamB</small>
+		</footer>
+		<!-- Scripts -->
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/jquery.scrollex.min.js"></script>
+		<script src="/assets/js/jquery.scrolly.min.js"></script>
+		<script src="/assets/js/browser.min.js"></script>
+		<script src="/assets/js/breakpoints.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<script src="/assets/js/main.js"></script>
+
+	</body>
+</html>

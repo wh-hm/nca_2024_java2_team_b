@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>学天市場</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" th:href="@{/assets/css/reset.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+	
+</head>
+
+<body >
+	<div class="container">				
+	<div class="inner1">
+	<header id="login_header">
+		<h1>学天市場</h1>
+		
+	</header>
+					<section id="login">
+						<div class="inner text-center">
+							<h2>学天会員 ログイン</h2>
+					
+						
+						<form method="post" th:action="@{/perform_login}" th:object="${userform}">
+							<div class="fields">
+								<div class="field half">
+									
+									<label for="username">Email</label>
+									
+									<input type="email" name="username" id="username"  required/>
+								</div>
+								<div class="field half">
+									<label for="password">パスワード</label>
+									<input type="password" name="password" id="password" required/>
+								</div>
+							</div>
+							<!-- エラーメッセージ -->
+							<div th:if="${param.error}" class="msg">
+								<p style="color: red;">ユーザー名またはパスワードが無効です。</p>
+							</div>
+							<!-- ログアウトメッセージ -->
+							<div th:if="${param.logout}" class="msg">
+								<p style="color: green;">正常にログアウトしました</p>
+							</div>
+							<nav>
+								<ul>
+									<li><a th:href="@{/user/login/add}">新規登録</a></li>
+									<li><a th:href="@{/user/login/nologin}">ログインせずに使用する</a></li>
+								</ul>
+							</nav>
+							
+							<div class="btn ">
+								<button type="submit" name="submit" id="submit">ログイン</button>
+							</div>
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							
+						</form>
+					</div>
+					
+				</section>
+				</div>
+				</div>
+	<footer>
+		<small>Copyright © 2025 TeamB</small>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+</body>
+
+</html>
